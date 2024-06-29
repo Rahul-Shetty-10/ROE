@@ -1,0 +1,722 @@
+const express = require("express");
+const router = express.Router();
+const db = require('../db/db');
+const bcrypt = require('bcrypt');
+const passport = require('passport'); 
+require('../helper/passport');
+
+require('dotenv').config();
+
+//mail verification
+const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
+
+
+
+router.use(passport.initialize()); 
+router.use(passport.session());
+
+// Auth 
+router.get('/auth/google' , passport.authenticate('google', { scope: 
+	[ 'email', 'profile' ] 
+})); 
+
+
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), async function (req, res) {
+    try {
+        const { email, given_name, family_name, picture, id } = req.user;
+
+        db.query('SELECT * FROM Users WHERE Email = ?', [email], async function (error, results, fields) {
+            if (error) {
+                throw error;
+            }
+
+            if (results.length > 0) {
+                db.query('UPDATE Users SET FirstName = ?, LastName = ?, ProfilePictureURL = ?, GoogleUserID = ?, LastLogin = current_timestamp() WHERE Email = ?', [given_name, family_name, picture, id, email], function (error, results, fields) {
+                    if (error) {
+                        throw error;
+                    }
+                    req.session.user = { email: email }; 
+                    if (email === 'republicofengineers.sns@gmail.com') {
+                        res.redirect('/admin_dashboard');
+                    } else {
+                        res.redirect('/user_dashboard');
+                    }
+                });
+            } else {
+                const newUser = {
+                    Email: email,
+                    FirstName: given_name,
+                    LastName: family_name,
+                    ProfilePictureURL: picture,
+                    GoogleUserID: id
+                };
+
+                db.query('INSERT INTO Users SET ?', newUser, function (error, results, fields) {
+                    if (error) {
+                        throw error;
+                    }
+                     // Insert into Profile table
+              db.query('INSERT INTO Profile (Email) VALUES (?)', [email], function (profileError, profileResults, profileFields) {
+                if (profileError) {
+                    console.error('Error inserting into Profile table:', profileError);
+                    return res.status(500).json({ error: "Internal server error" });
+                }
+                    req.session.user = { email: email }; 
+                    if (email === 'republicofengineers.sns@gmail.com') {
+                        res.redirect('/admin_dashboard');
+                    } else {
+                        res.redirect('/user_dashboard');
+                    }
+                });
+            });
+            }
+            
+        });
+    } catch (error) {
+        console.error('Error inserting or updating user data in database:', error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
+router.use(express.urlencoded({ extended: true }));
+
+router.get('/', function (req, res) {
+    res.render('user/index', {error:''});
+});
+
+//--------------------------------session----------------------------------
+router.get('/placement', function (req, res) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    console.log('cache');
+    console.log(req.session);
+
+    if (!req.session.user || !req.session.user.email) {
+        res.redirect('/');
+    } else {
+        res.render('user/placement');
+    }
+});
+router.get('/user_dashboard', function (req, res) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    console.log('cache');
+    console.log(req.session);
+
+    if (!req.session.user || !req.session.user.email) {
+        res.redirect('/');
+    } else {
+        res.render('user/user_dashboard');
+    }
+});
+
+router.get('/admin_dashboard', function (req, res) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    if (!req.session.user || req.session.user.email !== 'republicofengineers.sns@gmail.com') {
+        res.redirect('/user_dashboard');
+    } else {
+        res.render('admin/admin_dashboard');
+    }
+});
+
+//------------------------------------------------------profile page-----------------------------------------------------------------
+router.get('/profile', function (req, res) {
+    if (!req.session.user || !req.session.user.email) {
+        return res.redirect('/');
+    }
+
+    const email = req.session.user.email;
+
+    db.query(`SELECT FirstName, LastName, Email, Phone, DATE_FORMAT(DOB, '%d/%m/%Y') as DOB, Gender, University, College, Branch, Semester FROM Profile WHERE Email = ?`, [email], function (error, results, fields) {
+        if (error) {
+            console.error('Error fetching profile:', error);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        if (results.length > 0) {
+            res.render('user/profile', { user: results[0] });
+        } else {
+            res.status(404).json({ error: "Profile not found" });
+        }
+    });
+});
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+router.get('/forgot', function (req, res) {
+        res.render('user/forgot');
+});
+
+
+// router.post('/user_dashboard', function (req, res) {
+//     console.log('working');
+
+//     req.session.user = { email: 'test@example.com' }; // Example user email, should be set dynamically after authentication
+
+//     res.redirect('/user_dashboard');
+// });
+
+router.get('/set_password', function (req, res) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    console.log('cache');
+    console.log(req.session);
+
+    if (!req.query.email) {
+        res.redirect('/');
+    } else {
+        req.session.email = req.query.email; // Store the email in session
+        res.render('user/set_password', { email: req.query.email }); // Pass the email variable to the view
+    }
+});
+
+router.get('/new_password', function (req, res) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    console.log('cache');
+    console.log(req.session);
+
+    if (!req.query.email) {
+        res.redirect('/');
+    } else {
+        req.session.email = req.query.email; // Store the email in session
+        res.render('user/new_password', { email: req.query.email }); // Pass the email variable to the view
+    }
+});
+
+router.get('/cancel-signin', function (req, res) {
+    res.redirect('/');
+})
+
+
+//--------------------------------------------------login------------------------------------------------------------------------------
+
+router.post('/login', async function (req, res) {
+    const { Email, Password } = req.body;
+
+    try {
+        db.query('SELECT * FROM Users WHERE Email = ?', [Email], async function (error, results, fields) {
+            if (error) {
+                throw error;
+            }
+
+            if (results.length === 0) {
+                return res.render('user/index', { error: "Email does not exist!" });
+            } else {
+                const user = results[0];
+                const hashedPassword = user.Password;
+
+                if (!Password || !hashedPassword) {
+                    console.error('Password or hashedPassword is undefined');
+                    return res.render('user/index', { error: "Password is undefined" });
+                }
+
+                try {
+                    const match = await bcrypt.compare(Password, hashedPassword);
+
+                    if (match) {
+                        db.query('UPDATE Users SET LastLogin = current_timestamp() WHERE Email = ?', [Email], function (error, results, fields) {
+                            if (error) {
+                                throw error;
+                            }
+                            req.session.user = { email: Email }; 
+                            if (Email === 'republicofengineers.sns@gmail.com') {
+                                res.redirect('/admin_dashboard');
+                            } else {
+                                res.redirect('/user_dashboard');
+                            }
+                        });
+                    } else {
+                        return res.render('user/index', { error: "Invalid password!" });
+                    }
+                } catch (bcryptError) {
+                    console.error('Error comparing passwords:', bcryptError);
+                    return res.status(500).json({ error: "Internal server error" });
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error in login:', error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//-----------------------------------verification--------------------------------
+// OAuth2 credentials
+// const CLIENT_ID = '106637296559-579mqr3cf9bbrvb3e2re6iaj9ep7la6v.apps.googleusercontent.com';
+// const CLIENT_SECRET = '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';
+// const ACCESS_TOKEN = 'ya29.a0AXooCgvgWAvnJ3T_Wm3EfInqwXmZ2OiRzxmVOSDvd7BmozemfIzl0FRO2d11iOUjkmQGBSO8CsZNjyjI4dGYUYeQXXTZEjlX6RZW6yjMAiT1rpwF3v5EierXGH5kOnZ7Vw8Q3NhgZEK8vTgeCYr-uqFMCgisgTfygRmTaCgYKATcSARISFQHGX2MiLqV8VU7PyDxYcpf7qPlBCw0171'
+// Create a transporter object using OAuth2 authentication
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.USER,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    accessToken: process.env.ACCESS_TOKEN
+  }
+});
+
+router.post('/signup', (req, res) => {
+    const email = req.body.Email;
+    const verificationLink = `http://localhost:3000/set_password?email=${email}`;
+
+    db.query('SELECT * FROM Users WHERE Email = ?', [email], async function (error, results, fields) {
+        if (error) {
+            throw error;
+        }
+
+        if (results.length > 0) {
+            res.render('user/index', {error: 'Email already exists!'});
+        } else {
+            const mailOptions = {
+                from: 'republicofengineers.sns@gmail.com',
+                to: email,
+                subject: 'Email Verification',
+                text: `Please verify your email and set password by clicking the following link: ${verificationLink}`,
+                html: `<p>Please verify your email by clicking the following link: <a href="${verificationLink}">${verificationLink}</a></p>`
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending email', error);
+                    return res.status(500).send('Error sending email');
+                }
+                console.log('Message sent: %s', info.messageId);
+                res.render('user/index', {error: `Verification email is sent to ${email}`})
+            });
+        }
+    });
+});
+
+//------------------------------------------------forgot password-------------------------------------------------------------------------
+
+router.post('/forgot', (req, res) => {
+    const email = req.body.Email;
+    const verificationLink = `http://localhost:3000/new_password?email=${email}`;
+    // const verificationLink = `republicofengineers.com`
+
+    db.query('SELECT * FROM Users WHERE Email = ?', [email], async function (error, results, fields) {
+        if (error) {
+            throw error;
+        }
+
+        if (results.length === 0) {
+            res.render('user/index', {error: 'Email does not exists!'});
+        } else {
+            const mailOptions = {
+                from: 'republicofengineers.sns@gmail.com',
+                to: email,
+                subject: 'Email Verification',
+                text: `Please verify your email and set password by clicking the following link: ${verificationLink}`,
+                html: `<p>Please verify your email by clicking the following link: <a href="${verificationLink}">${verificationLink}</a></p>`
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending email', error);
+                    return res.status(500).send('Error sending email');
+                }
+                console.log('Message sent: %s', info.messageId);
+                res.render('user/index', {error: `Verification email is sent to ${email}`})
+            });
+        }
+    });
+});
+
+
+//----------------------------------------------------set_password-------------------------------------------------------------
+router.post('/set_password', async function(req, res) {
+    const email = req.body.email; // Assuming the email is sent with the form data
+    const password = req.body.Password;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        db.query('INSERT INTO Users (Email, Password) VALUES (?, ?)', [email, hashedPassword], function (error, results, fields) {
+            if (error) {
+                throw error;
+            }
+              // Insert into Profile table
+              db.query('INSERT INTO Profile (Email) VALUES (?)', [email], function (profileError, profileResults, profileFields) {
+                if (profileError) {
+                    console.error('Error inserting into Profile table:', profileError);
+                    return res.status(500).json({ error: "Internal server error" });
+                }
+                //------------------------------------------------------------------------
+            req.session.user = { email: email }; 
+            if (email === 'republicofengineers.sns@gmail.com') {
+                res.redirect('/admin_dashboard');
+            } else {
+                res.redirect('/user_dashboard');
+            }
+        });
+        });
+    } catch (error) {
+        console.error('Error setting password:', error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//----------------------------------------------------new_password-------------------------------------------------------------
+router.post('/new_password', async function(req, res) {
+    const email = req.body.email; // Assuming the email is sent with the form data
+    const password = req.body.Password;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        db.query('UPDATE Users SET Password = ? WHERE Email = ?', [hashedPassword, email], function (error, results, fields) {
+            if (error) {
+                throw error;
+            }
+            req.session.user = { email: email }; 
+            if (email === 'republicofengineers.sns@gmail.com') {
+                res.redirect('/admin_dashboard');
+            } else {
+                res.redirect('/user_dashboard');
+            }
+        });
+    } catch (error) {
+        console.error('Error setting password:', error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//-------------------------------------------------profile post----------------------------------------------------------------------------------
+
+router.post('/profile', function (req, res) {
+    if (!req.session.user || !req.session.user.email) {
+        return res.redirect('/');
+    }
+
+    const email = req.session.user.email;
+    const { FirstName, LastName, Phone, DOB, Gender, University, College, Branch, Semester } = req.body; // Adjust these fields according to your form data
+
+    db.query('UPDATE Profile SET FirstName = ?, LastName = ?, Phone = ?, DOB = ?, Gender = ?, University = ?, College =?, Branch = ?, Semester = ? WHERE Email = ?', [FirstName, LastName, Phone, DOB, Gender, University, College, Branch, Semester, email], function (error, results, fields) {
+        if (error) {
+            console.error('Error updating profile:', error);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        res.redirect('/profile');
+    });
+});
+
+//-------------------------------------------------placement post----------------------------------------------------------------------------------
+
+const fs = require('fs');
+const multer = require('multer');
+const path = require('path');
+const uploadDir = path.join(__dirname, '..', '..', 'public', 'Payment_Screenshots');
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, uploadDir);
+    },
+    filename: function (req, file, cb) {
+        const ext = path.extname(file.originalname);
+        cb(null, file.fieldname + '-' + Date.now() + ext);
+    }
+});
+
+const upload = multer({ 
+    storage: storage,
+    limits: {
+        fileSize: 10 * 1024 * 1024, // Limit file size to 10MB (adjust as needed)
+    },
+    fileFilter: (req, file, cb) => {
+        // Check file type to allow only certain file extensions (e.g., images)
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true); // Accept the file
+        } else {
+            cb(new Error('Only images are allowed!'), false); // Reject the file
+        }
+    },
+});
+
+router.post('/placement', upload.single('Payment_Screenshot'), function (req, res) {
+    if (!req.session.user || !req.session.user.email) {
+        return res.redirect('/');
+    }
+
+    console.log(req.file); 
+
+    const email = req.session.user.email;
+    const { FirstName, LastName, Phone, DOB, Gender, University, College, Branch, Semester } = req.body;
+
+    
+
+    const Payment_Screenshot = req.file ? req.file.filename : null; // Use req.file.filename to get the filename
+
+    db.query(
+        'INSERT INTO Placement (Email, FirstName, LastName, Phone, DOB, Gender, University, College, Branch, Semester, Payment_Screenshot) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+        [email, FirstName, LastName, Phone, DOB, Gender, University, College, Branch, Semester, Payment_Screenshot], 
+        function (error, results, fields) {
+            if (error) {
+                console.error('Error inserting profile:', error);
+                
+                // Delete the uploaded image file if there is an error
+                if (req.file) {
+                    const imagePath = path.join(uploadDir, req.file.filename);
+                    fs.unlinkSync(imagePath);
+                }
+
+                return res.status(500).json({ error: "Internal server error" });
+            }
+
+            // Update Profile table
+            db.query(
+                'UPDATE Profile SET FirstName = ?, LastName = ?, Phone = ?, DOB = ?, Gender = ?, University = ?, College = ?, Branch = ?, Semester = ? WHERE Email = ?', 
+                [FirstName, LastName, Phone, DOB, Gender, University, College, Branch, Semester, email], 
+                function (updateError, updateResults, updateFields) {
+                    if (updateError) {
+                        console.error('Error updating profile in Profile table:', updateError);
+                        return res.status(500).json({ error: "Internal server error" });
+                    }
+
+                    res.redirect('/placement');
+                }
+            );
+        }
+    );
+});
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+
+router.get('/total_users', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    if (!req.session.user || req.session.user.email !== 'republicofengineers.sns@gmail.com') {
+        res.redirect('/user_dashboard');
+    } else {
+        // Query to count the total number of users
+        db.query('SELECT COUNT(*) AS Users_count FROM Users', (error, countResult) => {
+            if (error) {
+                console.error('Error counting users:', error);
+                return res.status(500).send('Internal server error');
+            }
+            
+            // Total number of users
+            const Users_count = countResult.length > 0 ? countResult[0].Users_count : 0;
+
+            // Query to fetch all user details
+            db.query('SELECT Email, FirstName, LastName, DATE_FORMAT(CreatedAt, "%d-%m-%Y %H:%i:%s") AS CreatedAt, DATE_FORMAT(LastLogin, "%Y-%m-%d %H:%i:%s") AS LastLogin FROM Users', (error, userResults) => {
+                if (error) {
+                    console.error('Error fetching users:', error);
+                    return res.status(500).send('Internal server error');
+                }
+
+                res.render('admin/total_users', { users: userResults, Users_count: Users_count });
+            });
+        });
+    }
+});
+
+router.get('/placement_training_registered', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    if (!req.session.user || req.session.user.email !== 'republicofengineers.sns@gmail.com') {
+        res.redirect('/user_dashboard');
+    } else {
+        // Query to count the total number of users
+        db.query('SELECT COUNT(*) AS Users_count FROM Placement', (error, countResult) => {
+            if (error) {
+                console.error('Error counting users:', error);
+                return res.status(500).send('Internal server error');
+            }
+            
+            // Total number of users
+            const Users_count = countResult.length > 0 ? countResult[0].Users_count : 0;
+
+            // Query to fetch all user details
+            db.query('SELECT *, DATE_FORMAT(DOB, "%d-%m-%Y") AS DOB FROM Placement', (error, userResults) => {
+                if (error) {
+                    console.error('Error fetching users:', error);
+                    return res.status(500).send('Internal server error');
+                }
+
+                res.render('admin/placement_training_registered', { users: userResults, Users_count: Users_count });
+            });
+        });
+    }
+});
+
+//------------------------------------------------------news users--------------------------------------------------
+router.get('/news_users', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    if (!req.session.user || req.session.user.email !== 'republicofengineers.sns@gmail.com') {
+        res.redirect('/user_dashboard');
+    } else {
+        // Query to count the total number of users
+        db.query('SELECT COUNT(*) AS Users_count FROM News_Letter', (error, countResult) => {
+            if (error) {
+                console.error('Error counting users:', error);
+                return res.status(500).send('Internal server error');
+            }
+            
+            // Total number of users
+            const Users_count = countResult.length > 0 ? countResult[0].Users_count : 0;
+
+            // Query to fetch all user details
+            db.query('SELECT *, DATE_FORMAT(JoinedAt, "%d-%m-%Y") AS JoinedAt FROM News_Letter', (error, userResults) => {
+                if (error) {
+                    console.error('Error fetching users:', error);
+                    return res.status(500).send('Internal server error');
+                }
+
+                res.render('admin/news_users', { users: userResults, Users_count: Users_count });
+            });
+        });
+    }
+});
+
+
+
+router.get('/user_profile', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    if (!req.session.user || req.session.user.email !== 'republicofengineers.sns@gmail.com') {
+        res.redirect('/user_dashboard');
+    } else {
+    
+    db.query('SELECT *, DATE_FORMAT(DOB, "%d-%m-%Y") AS DOB FROM Profile', (error, results) => {
+        if (error) {
+            console.error('Error fetching users:', error);
+            return res.status(500).send('Internal server error');
+        }
+        res.render('admin/user_profile', { users: results });
+    });
+}
+});
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------
+router.post('/news_letter', function(req, res) {
+    const email = req.body.Email; // Extract the email from req.body.Email
+
+    db.query('INSERT INTO News_letter (Email) VALUES (?)', [email], function(error, results) {
+        if (error) {
+            console.error('Error inserting into News_letter:', error);
+            return res.render('user/index', { error: 'Error in joining News Letter!' });
+        }
+        res.render('user/index', { error: 'Successfully joined our News Letter' });
+    });
+});
+
+//---------------------------------------------------------------delete user---------------------------------------------------------------
+
+router.post('/delete_user', (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
+    }
+
+    db.beginTransaction((err) => {
+        if (err) {
+            console.error('Error beginning transaction:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        db.query('DELETE FROM Users WHERE Email = ?', [email], (error, results) => {
+            if (error) {
+                console.error('Error deleting user from Users table:', error);
+                return db.rollback(() => {
+                    res.status(500).json({ error: 'Internal server error' });
+                });
+            }
+
+            db.query('DELETE FROM Profile WHERE Email = ?', [email], (error, results) => {
+                if (error) {
+                    console.error('Error deleting user from Profile table:', error);
+                    return db.rollback(() => {
+                        res.status(500).json({ error: 'Internal server error' });
+                    });
+                }
+
+                db.commit((err) => {
+                    if (err) {
+                        console.error('Error committing transaction:', err);
+                        return db.rollback(() => {
+                            res.status(500).json({ error: 'Internal server error' });
+                        });
+                    }
+                    res.redirect('/total_users');
+                });
+            });
+        });
+    });
+});
+
+
+//---------------------------------------------------------------delete user---------------------------------------------------------------
+router.post('/delete_placement_user', (req, res) => {
+    const { email } = req.body;
+    
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
+    }
+
+    db.query('DELETE FROM Placement WHERE Email = ?', [email], (error, results) => {
+        if (error) {
+            console.error('Error deleting user:', error);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+
+       res.redirect('/placement_training_registered')
+    });
+});
+
+//---------------------------------------------------------------delete newsuser---------------------------------------------------------------
+router.post('/delete_news_user', (req, res) => {
+    const { email } = req.body;
+    
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
+    }
+
+    db.query('DELETE FROM News_Letter WHERE Email = ?', [email], (error, results) => {
+        if (error) {
+            console.error('Error deleting user:', error);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+
+       res.redirect('/news_users')
+    });
+});
+
+module.exports = router;
+
+
