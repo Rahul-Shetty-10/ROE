@@ -1,0 +1,259 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 5px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-weight: bolder;
+    font-size: 26px;
+    text-align: center;
+    color: white;
+    background:rgb(42, 29, 90);;
+    border: 1px solid #f0f0f0;
+    border-radius: 15px;
+    padding: 6px;
+    margin-bottom: 0px;
+}
+
+.sub {
+    font-size: 20px;
+    color: black;
+    background-color: rgba(105, 87, 156, 0.3);
+    border: 1px solid rgb(105, 87, 156);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.about {
+    margin-left: 10px;
+}
+
+.contact h2 {
+    margin-left: 10px;
+    font-weight: bolder;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact p {
+    margin-left: 10px;
+    font-size: 15px;
+    line-height: 1;
+    color: #555;
+}
+
+.section h2 {
+    font-weight: bolder;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.section p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.section ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.section ul li {
+    margin-bottom: 5px;
+}
+
+.perks,
+.who-can-apply {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.icon-large {
+    font-size: 18px;
+}
+
+.icon-email {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.btn {
+    background: rgb(42, 29, 90);
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-bottom: 1%;
+}
+
+.btn:hover {
+    background: rgb(42, 29, 90);
+    transform: scale(0.9);
+    transition: 0.5s ease;
+}
+
+.back {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+@media (max-width:450px) {
+    .header h1 {
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        background-color: rgb(68, 49, 120);
+        border: 1px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 6px;
+        margin-bottom: 0px;
+    }
+
+    .sub {
+        font-size: 15px;
+        color: black;
+        background-color: rgba(105, 87, 156, 0.3);
+        border: 1px solid rgb(105, 87, 156);
+        border-radius: 15px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .about h2 {
+        font-size: 16px;
+    }
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-box input,
+.input-box select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.column {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column .input-box {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.column .input-box:last-child {
+    margin-right: 0;
+}
+
+.gender-option {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+}
+
+.gender input {
+    margin-right: 5px;
+}
+
+.address {
+    margin-bottom: 15px;
+}
+
+.select-box {
+    margin-bottom: 15px;
+}
+
+.select-box select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer button {
+    margin-left: 10px;
+}
+.modal-header{
+    background: rgb(42, 29, 90);
+    color:white;
+}
+
+/* .submit{
+ border:1px solid rgb(13, 223, 156);
+ border-radius: 30px;
+ background-color: rgb(13, 223, 156);
+} */
+
+/* .reset{
+    border: 2px solid rgb(42, 29, 90);
+    border-radius: 30px;
+    background: transparent;
+    padding: 4px;
+}
+
+.reset:hover{
+    cursor:pointer;
+    border:1px solid rgb(42, 29, 90);;
+    background-color: rgb(42, 29, 90);;
+    color:white;
+    transform: scale(0.9);
+    transition: 0.5s ease;
+} */
+
+.reset{
+    border:2px solid rgb(42, 29, 90);
+    color:black;
+    background-color: transparent;
+}
+.reset:hover{
+    background-color: rgb(42, 29, 90);
+    color:white;
+}
+.close{
+ color: white;
+}
+.close:hover{
+    color:white;
+    cursor:pointer;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Set Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group input {
+            font-size: medium;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            padding-right: 40px; /* Add padding to make space for the icon */
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4b33b5;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bolder;
+            margin-bottom: 10px; /* Add margin to create space between buttons */
+            transition: transform 0.5s; 
+        }
+
+        .btn:hover {
+            transform: scale(0.95);
+            color:white;
+            background-color: black;
+        }
+        .set-btn{
+            background: rgb(62,49,120);
+        }
+        .set-btn:hover{
+           transform: scale(0.9);
+           transition: transform 0.5s ease;
+        }
+        .cancel-btn {
+            background-color: transparent;
+            color:black;
+            border: 2px solid rgb(0, 0, 0);
+        }
+
+        .cancel-btn:hover {
+            background-color: rgb(0, 0, 0);
+        }
+       
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 15px;
+            }
+
+            .container h2 {
+                font-size: 20px;
+            }
+
+            .form-group input {
+                padding: 8px;
+            }
+
+            .btn {
+                padding: 8px;
+                font-size: 14px;
+                margin-bottom: 8px; /* Adjust margin for responsive design */
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Verify Your Email</h2>
+        <form id="passwordForm" action="/forgot" method="POST">
+            <div class="form-group">
+                <div class="input-box">
+                    <input type="email" id="Email" name="Email" placeholder="Enter Your Email" required>
+                </div>
+            </div>
+            <button type="submit" class="btn set-btn">Send verification link</button>
+            <button type="button" class="btn cancel-btn" onclick="cancelSignIn()">Cancel</button>
+        </form>
+    </div>
+
+   <script>
+    function cancelSignIn() {
+            // Confirm cancellation
+            const confirmed = window.confirm("Are you sure you want to cancel sign in?");
+            if (confirmed) {
+                // Redirect if confirmed
+                window.location.href = '/cancel-signin';
+            }
+        }
+   </script>
+</body>
+</html>

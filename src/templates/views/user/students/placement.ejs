@@ -1,0 +1,575 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/sidebar') %>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Training Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style_placement.css">
+    <style>
+        .placement-container {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .placement-container .back a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+        }
+
+        .placement-container .header {
+            text-align: center;
+        }
+
+        .placement-container .header h1 {
+            margin-bottom: 10px;
+        }
+
+        .placement-container .sub p {
+            margin: 5px 0;
+        }
+
+        .placement-container .section {
+            margin-top: 20px;
+        }
+
+        .placement-container .section h2 {
+            margin-bottom: 10px;
+        }
+
+        .placement-container .section ul,
+        .placement-container .section ol {
+            margin-left: 20px;
+        }
+
+        .placement-container .contact a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .placement-container .text-center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .placement-container .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .placement-container .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .placement-container .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .placement-container .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .placement-container .modal-header,
+        .placement-container .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .placement-container .close {
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        .placement-container .form .input-box {
+            margin-bottom: 15px;
+        }
+
+        .placement-container .form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .placement-container .form input,
+        .placement-container .form select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .placement-container .form .column {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .placement-container .form .column .input-box {
+            width: 48%;
+        }
+
+        .placement-container .reset {
+            background-color: #6c757d;
+            border: none;
+            color: white;
+            padding: 100px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .placement-container .reset:hover {
+            background-color: #5a6268;
+        }
+   
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        overflow: auto;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .modal-dialog {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-header h5 {
+        margin: 0;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .close {
+        cursor: pointer;
+        font-size: 24px;
+        color: #aaa;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .modal-body {
+        padding: 20px 0;
+    }
+
+    .form .input-box {
+        margin-bottom: 15px;
+    }
+
+    .form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form input,
+    .form select {
+        width: calc(100% - 20px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .form .column {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form .column .input-box {
+        width: 48%;
+    }
+
+    .form .text-center {
+        text-align: center;
+    }
+
+    .form .text-center img {
+        max-width: 120px;
+        margin: 20px 0;
+    }
+
+    .form .modal-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+    }
+
+    .form .reset {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .form .reset:hover {
+        background-color: #5a6268;
+    }
+
+    .form .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .form .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        overflow: auto;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .modal-dialog {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-header h5 {
+        margin: 0;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .close {
+        cursor: pointer;
+        font-size: 24px;
+        color: #aaa;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .modal-body {
+        padding: 20px 0;
+    }
+
+    .form .input-box {
+        margin-bottom: 15px;
+    }
+
+    .form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form input,
+    .form select {
+        width: calc(100% - 20px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .form .column {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form .column .input-box {
+        width: 48%;
+    }
+
+    .form .text-center {
+        text-align: center;
+    }
+
+    .form .text-center img {
+        max-width: 120px;
+        margin: 20px 0;
+    }
+
+    .form .modal-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+    }
+
+    .form .reset {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .form .reset:hover {
+        background-color: #5a6268;
+    }
+
+    .form .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .form .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+
+</head>
+
+<body>
+
+    <div class="placement-container">
+        <div class="back">
+            <!-- <a href="user_dashboard"><span class="close fa">&#xf060;</span></a> -->
+        </div>
+        
+
+        <div class="section about">
+            <h2>About the Placement Training Program</h2>
+            <ul>
+                <li>Resume Building and Cover Letters</li>
+                <li>Interview Skills and Mock Interviews</li>
+                <li>Understanding Job Descriptions and Requirements</li>
+                <li>Group Discussions and Personal Interviews</li>
+                <li>Aptitude and Technical Tests</li>
+                <li>Industry Insights and Best Practices</li>
+            </ul>
+        </div>
+        <div class="perks section">
+            <h2>Perks</h2>
+            <ul>
+                <li>Certificate</li>
+                <li>Mock Interviews and Feedback</li>
+                <li>Networking Opportunities</li>
+            </ul>
+        </div>
+        <div class="who-can-apply section">
+            <h2>Who Can Apply?</h2>
+            <ul>
+                <li>All engineering students studying in their 3rd year or 6th semester from any branch are eligible to apply for the Placement Training Workshop.</li>
+            </ul>
+        </div>
+        <div class="who-can-apply section">
+            <h2>Registration Process</h2>
+            <ol>
+                <li>Click on the "Apply Now" button at the bottom of this page.</li>
+                <li>Fill out the application form with the required details.</li>
+                <li>Scan the QR code in the form to make the payment.</li>
+                <li>Upload the screenshot of payment and submit.</li>
+            </ol>
+        </div>
+        <div class="contact">
+            <h2>Contact Us:</h2>
+            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/republic.of.engineers?igsh=MXRmdjZ2OHU3NW84cw==" target="_blank"><i class="fab fa-instagram icon-large"> @republic.of.engineers</i></a></p>
+            <p><strong>Email:</strong> <a href="mailto:republicofengineers.sns@gmail.com"><i class="fas fa-envelope icon-email"></i> republicofengineers.sns@gmail.com</a></p>
+        </div>
+    </div>
+
+    <div class="placement-container text-center">
+        <button class="btn-primary" onclick="document.getElementById('applyModal').style.display='block'">Apply Now</button>
+    </div>
+
+    <!-- Modal -->
+    <!-- Modal Popup -->
+<!-- Modal Popup -->
+<div id="applyModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Application Form</h5>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="applicationForm" action="/placement" method="POST" class="form" enctype="multipart/form-data">
+                    <div class="container">
+                        <div class="input-box">
+                            <label for="FirstName">First Name</label>
+                            <input type="text" id="FirstName" name="FirstName" placeholder="Enter first name" maxlength="20" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="LastName">Last Name</label>
+                            <input type="text" id="LastName" name="LastName" placeholder="Enter last name" required>
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label for="Phone">Phone Number</label>
+                                <input type="tel" id="Phone" name="Phone" placeholder="Enter phone number" required>
+                            </div>
+                            <div class="input-box">
+                                <label for="DOB">Date of Birth</label>
+                                <input type="date" id="DOB" name="DOB" placeholder="Enter birth date" required>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label for="Gender">Gender</label>
+                            <select id="Gender" name="Gender" required>
+                                <option value="">---Select your Gender---</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label for="University">University</label>
+                                <select id="University" name="University" required>
+                                    <option value="">--Select your University---</option>
+                                    <option value="VTU">VTU</option>
+                                    <option value="Autonomous">Autonomous</option>
+                                    <option value="Deemed">Deemed</option>
+                                    <option value="Private">Private</option>
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <label for="College">College</label>
+                                <input type="text" id="College" name="College" placeholder="Enter your college" required>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label for="Branch">Branch</label>
+                                <input type="text" id="Branch" name="Branch" placeholder="Enter your Branch" required>
+                            </div>
+                            <div class="input-box">
+                                <label for="Semester">Semester</label>
+                                <input type="number" id="Semester" name="Semester" placeholder="Enter your semester" required>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <label>Scan the QR code below to make the payment</label>
+                            <img src="\images\qr-code1.jpeg" alt="QR Code for Payment" style="max-width: 120px; margin: 20px 0;">
+                        </div>
+                        <div class="input-box">
+                            <label for="Payment_Screenshot">Payment Receipt</label>
+                            <input type="file" id="Payment_Screenshot" name="Payment_Screenshot" placeholder="Upload payment receipt" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="reset">Reset</button>
+                            <button type="submit" class="btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Function to open the modal
+    function openModal() {
+        document.getElementById('applyModal').style.display = 'flex';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        document.getElementById('applyModal').style.display = 'none';
+    }
+
+    // Close the modal if user clicks outside of it
+    window.onclick = function(event) {
+        var modal = document.getElementById('applyModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+
+
+</body>

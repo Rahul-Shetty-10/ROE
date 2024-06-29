@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+    - primary meta tags
+  -->
+    <title>Republic Of Engineers</title>
+    <meta name="title" content="Adex">
+    <meta name="description" content="This is a business agency html template made by codewithsadee">
+
+    <!-- 
+    - favicon
+  -->
+    <link href="/images/logo_white_title.png" rel="icon">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Bootstrap CSS -->
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-------------------logo font-------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap" rel="stylesheet">
+    <!-- 
+    - custom css link
+  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- 
+    - preload images
+  -->
+    <link rel="preload" as="image" href="/images/hero-bg.jpg">
+    <link rel="preload" as="image" href="/images/hero-slide-1.jpg">
+    <link rel="preload" as="image" href="/images/hero-slide-2.jpg">
+    <link rel="preload" as="image" href="/images/hero-slide-3.jpg">
+
+</head>
+
+<body>
+
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header>
+        <div class="container">
+
+            <a href="/" class="logo desktop">
+                <img src="/images/logo_white.png" width="84" height="24" alt="Adex home" class="logo-light">
+                <h1 class="logo-light logo-text">Republic of Engineers</h1>
+
+                <img src="/images/logo.png" width="84" height="24" alt="Adex home" class="logo-dark">
+                <h1 class="logo-dark logo-text">Republic of Engineers</h1>
+            </a>
+            <a href="user_dashboard" class="logo mobile">
+                <img src="/images/logo_white.png" width="84" height="24" alt="Adex home" class="logo-light">
+                <h1 class="logo-light logo-text">R O E</h1>
+
+
+                <img src="/images/logo.png" width="84" height="24" alt="Adex home" class="logo-dark">
+                <h1 class="logo-dark logo-text">R O E</h1>
+            </a>
+
+            <nav class="navbar" data-navbar>
+
+                <div class="navbar-top">
+                    <a href="#" class="logonav">
+                        <span class="logo-navtext">
+                            <img src="/images/logo_white.png" width="84" height="34" alt="Adex home">
+                            <span><b>ROE</b></span>
+                        </span>
+                    </a>
+
+                    <button class="nav-close-btn-index nav-close" aria-label="close menu" data-nav-toggler>
+                        <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                    </button>
+                </div>
+
+                <ul class="navbar-list index-navbar">
+
+                    <li>
+                        <a href="#top" class="navbar-link">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#services" class="navbar-link">Features</a>
+                    </li>
+
+                    <li>
+                        <a href="#why-us" class="navbar-link">Why Us?</a>
+                    </li>
+
+                    <!-- <li>
+            <a href="#" class="navbar-link">Blog</a>
+          </li> -->
+
+                    <li>
+                        <a href="#contact" class="navbar-link">Contact</a>
+                    </li>
+                    <li class="lgt">
+                        <a href="#" id="openFormBtn" class="navbar-link">Login/Signup</a>
+                    </li>
+                </ul>
+
+                <div class="wrapper">
+                    <a href="mailto:republicofengineers.sns@gmail.com">republicofengineers.sns@gmail.com</a>
+
+                    <a href="tel:7090930457">+91 7090930457</a>
+                </div>
+
+                <ul class="social-list">
+
+                    <!-- <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-twitter"></ion-icon>
+                        </a>
+                    </li> -->
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+
+                    <!-- <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-dribbble"></ion-icon>
+            </a>
+          </li> -->
+
+                    <li>
+                        <a href="https://www.instagram.com/republic.of.engineers" class="social-link">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-youtube"></ion-icon>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <!-- <a href="login" class="btn btn-primary">Login/Signup</a> -->
+            <a href="#" id="openFormBtn" class="btn btn-primary">Login/Signup</a>
+
+
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+            </button>
+
+            <div class="overlay" data-nav-toggler data-overlay></div>
+
+        </div>
+    </header>
+    <!------------------------------------------------------error--------------------------------------------------------->
+    <% if (error) { %>
+        <div class="error-message">
+            <%= error %>
+        </div>
+        <% } %>
+            <!------------------------------------------------------log/sign------------------------------------------------------>
+            <!-- Modal Structure -->
+            <div id="loginSignupModal" class="modal">
+                <div class="modal-content">
+
+                    <div class="logcontainer">
+                        <span class="close">&times;</span>
+                        <div class="Form login-form">
+
+
+                            <h2>Login</h2>
+                            <form action="/login" method="POST">
+                                <div class="input-box">
+                                    <i class='bx bxs-envelope'></i>
+                                    <label for="#">Mail ID</label>
+                                    <input type="email" name="Email" id="Email" placeholder="Enter Your Mail ID*"
+                                        required>
+
+
+                                </div>
+                                <div class="input-box">
+                                    <i class='bx bxs-lock-alt'></i>
+                                    <input type="password" name="Password" id="Password"
+                                        placeholder="Enter Your Password*" required>
+                                    <label for="#">Password</label>
+
+                                </div>
+                                <div class="forgot-section">
+                                    <!-- <span><input type="checkbox" name="" id="checked">Remember_Me</span> -->
+                                    <span id="/forgot"><a href="/forgot" id="forgot">Forgot Password ?</a></span>
+                                </div>
+                                <button type="submit" class="logbtn">Login</button>
+                            </form>
+                            <p class="ls">OR</p>
+                            <!-- Inside the Login/Register modal -->
+                            <div class="input-group mb-3" style="display: flex;">
+                                <button class="google-login"><a href="/auth/google"
+                                        style="all:unset; display: flex; align-items: center; text-decoration: none;">
+                                        <img src="/images/google.png" style="width:20px" class="me-2" alt="Google Logo">
+                                        <small>Log in with Google</small></a>
+                                </button>
+                            </div>
+
+                            <!-- <div class="social-media">
+                        <i class='bx bxl-google'></i>
+                    </div> -->
+                            <p class="RegisteBtn LoginBtn"><a href="#">Don't have an account?&nbsp;&nbsp; <span style="color:blue;">SignUp</span> </a>
+                            </p>
+                        </div>
+                        <div class="Form Register-form">
+                            <h2>Signup</h2>
+                            <form action="/signup" method="POST">
+
+                                <div class="input-box">
+                                    <i class='bx bxs-envelope'></i>
+                                    <label for="mail">Mail ID</label>
+                                    <input type="email" name="Email" id="Email" placeholder="Enter Your Mail ID*"
+                                        required>
+                                </div>
+                                <div class="forgot-section">
+                                    <span id="termsCheckbox"><input type="checkbox" name="" id="termsCheckbox"
+                                            required>&nbsp;&nbsp;<a href="#"> I agree to terms &
+                                            conditions</a></span>
+                                </div>
+                                <button type="submit" class="logbtn loginBtn">Send Verification link</button>
+
+                            </form>
+                            <p class="ls">OR</p>
+                            <div class="input-group mb-3" style="display: flex;">
+                                <button class="google-login" id="googleLoginBtn"><a href="/auth/google"
+                                        style="all:unset; display: flex; align-items: center; text-decoration: none;">
+                                        <img src="/images/google.png" style="width:20px" class="me-2" alt="Google Logo">
+                                        <small>Sign in with Google</small></a>
+                                </button>
+                            </div>
+                            <p class="RegiBtn RegisteBtn"><a href="#">Already have an account? &nbsp;&nbsp;<span style="color:blue;"> Login</span> </a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------------------>
+
+
+            <main>
+                <article>
+
+                    <!-- 
+        - #HERO
+      -->
+
+                    <section id="top" class="section hero has-bg-image" aria-label="home"
+                        style="background-image: url('/images/hero-bg.jpg')">
+                        <div class="container">
+
+                            <div class="hero-content">
+
+                                <h1 class="h2 hero-title">Every Engineer's Wonderland.</h1>
+
+                                <p class="hero-text">
+                                    Empowering Engineers, Building Futures: Welcome to ROE, where opportunities and
+                                    community
+                                    thrive!
+                                </p>
+
+                                <div class="btn-wrapper">
+                                    <a href="#" id="openFormBtn" class="btn btn-primary">Explore Now</a>
+
+                                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="hero-slider" data-slider>
+
+                                <div class="slider-inner">
+                                    <ul class="slider-container" data-slider-container>
+                                        <li class="slider-item">
+
+                                            <figure class="img-holder" style="--width: 575; --height: 550;">
+                                                <img src="/images/right_branch.jpg" width="575" height="550" alt=""
+                                                    class="img-cover">
+                                            </figure>
+
+                                        </li>
+                                        <li class="slider-item">
+
+                                            <figure class="img-holder" style="--width: 575; --height: 550;">
+                                                <img src="/images/placement_training1.png" width="575" height="550"
+                                                    alt="" class="img-cover">
+                                            </figure>
+
+                                        </li>
+                                        <li class="slider-item">
+
+                                            <figure class="img-holder" style="--width: 575; --height: 550;">
+                                                <img src="/images/placement.png" width="575" height="550" alt=""
+                                                    class="img-cover">
+                                            </figure>
+
+                                        </li>
+                                        <li class="slider-item">
+
+                                            <figure class="img-holder" style="--width: 575; --height: 550;">
+                                                <img src="/images/entrance_image.jpg" width="575" height="550" alt=""
+                                                    class="img-cover">
+                                            </figure>
+
+                                        </li>
+                                        
+                                        <li class="slider-item">
+
+                                            <figure class="img-holder" style="--width: 575; --height: 550;">
+                                                <img src="/images/workshops.jpg" width="575" height="550" alt=""
+                                                    class="img-cover">
+                                            </figure>
+
+                                        </li>
+                                        <li class="slider-item">
+
+                                            <figure class="img-holder" style="--width: 575; --height: 550;">
+                                                <img src="/images/RE.png" width="575" height="550" alt=""
+                                                    class="img-cover">
+                                            </figure>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <button class="slider-btn prev" aria-label="slide to previous" data-slider-prev>
+                                    <ion-icon name="chevron-back"></ion-icon>
+                                </button>
+
+                                <button class="slider-btn next" aria-label="slide to next" data-slider-next>
+                                    <ion-icon name="chevron-forward"></ion-icon>
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </section>
+
+
+
+
+
+                    <!-- 
+        - #SERVICE
+      -->
+                    <section id="services" class="section service" aria-labelledby="service-label">
+                        <div class="container">
+                            <p class="section-subtitle" id="service-label">What We Do?</p>
+                            <h2 class="h2 section-title">
+                                The Features Available Are Specifically Designed To Meet Your Needs.
+                            </h2>
+
+                            <div class="toggle-options d-flex justify-content-center">
+                                <button id="aspirantsBtn" class="toggle-btn active"
+                                    data-target="aspirants">Aspirants</button>
+                                <button id="studentsBtn" class="toggle-btn" data-target="students">Students</button>
+                            </div>
+
+                            <div class="row" id="cardRow">
+                                <div class="col-md-4 aspirants">
+                                    <div class="service-card">
+                                        <div class="card-icon">
+                                            <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                                        </div>
+                                        <h3 class="h4 card-title">Entrance Exams</h3>
+                                        <p class="card-text">
+                                            Access up-to-date information on engineering entrance exams, including
+                                            important dates,
+                                            syllabus coverage, and tips for excelling in your exams.
+                                        </p>
+                                        <a href="#" id="openFormBtn" class="btn-text">
+                                            <span class="span" id="openFormBtn">Join Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 aspirants">
+                                    <div class="service-card">
+                                        <div class="card-icon">
+                                            <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                                        </div>
+                                        <h3 class="h4 card-title">College Rankings</h3>
+                                        <p class="card-text">
+                                            Explore detailed college rankings to make informed decisions about your
+                                            engineering education, featuring insights into top institutions and their
+                                            programs.
+                                        </p>
+                                        <a href="#" class="btn-text">
+                                            <span class="span" id="openFormBtn">Join Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 aspirants">
+                                    <div class="service-card">
+                                        <div class="card-icon">
+                                            <ion-icon name="notifications-outline" aria-hidden="true"></ion-icon>
+                                        </div>
+                                        <h3 class="h4 card-title">Explore Branches</h3>
+                                        <p class="card-text">
+                                            Discover branches of engineering and find the one that aligns with
+                                            your passion, with detailed insights into each field's career prospects and
+                                            academic requirements.
+                                        </p>
+                                        <a href="#" class="btn-text">
+                                            <span class="span" id="openFormBtn">Join Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 students" style="display: none;">
+                                    <div class="service-card">
+                                        <div class="card-icon">
+                                            <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+                                        </div>
+                                        <h3 class="h4 card-title">Placement Training</h3>
+                                        <p class="card-text">
+                                            Participate in tailored placement training sessions covering interview
+                                            preparation, resume building, and interpersonal skills to secure lucrative
+                                            career opportunities in engineering.
+                                        </p>
+                                        <a href="#" class="btn-text">
+                                            <span class="span" id="openFormBtn">Join Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 students" style="display: none;">
+                                    <div class="service-card">
+                                        <div class="card-icon">
+                                            <ion-icon name="notifications-outline" aria-hidden="true"></ion-icon>
+                                        </div>
+                                        <h3 class="h4 card-title">Higher Study Guidance</h3>
+                                        <p class="card-text">
+                                            Receive expert guidance and resources for pursuing higher studies in
+                                            engineering, including advice on selecting programs, application strategies,
+                                            and scholarship opportunities.
+                                        </p>
+                                        <a href="#" class="btn-text">
+                                            <span class="span" id="openFormBtn">Join Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 students" style="display: none;">
+                                    <div class="service-card">
+                                        <div class="card-icon">
+                                            <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+                                        </div>
+                                        <h3 class="h4 card-title">Workshops/Seminars</h3>
+                                        <p class="card-text">
+                                            Engage in enriching workshops and seminars tailored to expand your knowledge
+                                            and skills in specialized areas of engineering, featuring industry experts
+                                            and hands-on learning.
+                                        </p>
+                                        <a href="#" class="btn-text">
+                                            <span class="span" id="openFormBtn">Join Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+
+
+
+
+                    <!-- 
+        - #ABOUT
+      -->
+
+                    <section id="why-us" class="about" aria-labelledby="about-label">
+                        <div class="container">
+
+                            <figure class="about-banner">
+                                <img src="/images/about-banner.png" width="800" height="580" loading="lazy"
+                                    alt="about banner" class="w-100">
+                            </figure>
+
+                            <div class="about-content">
+
+                                <p class="section-subtitle" id="about-label">Why Choose Us?</p>
+
+                                <h2 class="h2 section-title">
+                                    Expert Guidance from Industry Leaders, <br> Elevating Your Engineering Journey.
+                                </h2>
+
+                                <ul>
+
+                                    <li class="about-item">
+                                        <div class="accordion-card expanded" data-accordion>
+
+                                            <h3 class="card-title">
+                                                <button class="accordion-btn" data-accordion-btn>
+                                                    <ion-icon name="chevron-down-outline" aria-hidden="true"
+                                                        class="down"></ion-icon>
+
+                                                    <spna class="span h5">Cutting-Edge Research Opportunities</spna>
+                                                </button>
+                                            </h3>
+
+                                            <p class="accordion-content">
+                                                Explore pioneering research initiatives and opportunities to collaborate
+                                                with industry leaders, fostering innovation and advancing your career in
+                                                engineering.
+                                            </p>
+
+                                        </div>
+                                    </li>
+
+                                    <li class="about-item">
+                                        <div class="accordion-card" data-accordion>
+
+                                            <h3 class="card-title">
+                                                <button class="accordion-btn" data-accordion-btn>
+                                                    <ion-icon name="chevron-down-outline" aria-hidden="true"
+                                                        class="down"></ion-icon>
+
+                                                    <spna class="span h5">Comprehensive Curriculum</spna>
+                                                </button>
+                                            </h3>
+
+                                            <p class="accordion-content">
+                                                Access a comprehensive curriculum that blends theoretical knowledge with
+                                                practical applications, preparing you to tackle real-world engineering
+                                                challenges.
+                                            </p>
+
+                                        </div>
+                                    </li>
+
+                                    <li class="about-item">
+                                        <div class="accordion-card" data-accordion>
+
+                                            <h3 class="card-title">
+                                                <button class="accordion-btn" data-accordion-btn>
+                                                    <ion-icon name="chevron-down-outline" aria-hidden="true"
+                                                        class="down"></ion-icon>
+
+                                                    <spna class="span h5">Industry-Relevant Skills Development</spna>
+                                                </button>
+                                            </h3>
+
+                                            <p class="accordion-content">
+                                                Develop industry-relevant skills through hands-on projects, workshops,
+                                                and internships, equipping you with the expertise sought after by top
+                                                employers.
+
+
+
+
+
+
+                                            </p>
+
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </section>
+
+
+                </article>
+            </main>
+
+            <!-- 
+    - #FOOTER
+  -->
+
+            <footer id="contact" class="footer">
+                <div class="container grid-list">
+
+                    <div class="footer-brand">
+
+                        <a href="#" class="logo">
+                            <img src="/images/logo_white.png" width="150" height="24" alt="" class="logo-light">
+                            <h1 style="color:white; margin-left: 15%; margin-top:-20px;">ROE</h1>
+                        </a>
+
+                        <p class="footer-text">
+                            &copy; 2024 Republic Of Engineers. <br> All rights reserved.
+                        </p>
+
+                        <ul class="social-list">
+
+                            <!-- <li>
+                                <a href="#" class="social-link">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                            </li> -->
+
+
+                            <li>
+                                <a href="https://www.instagram.com/republic.of.engineers" class="social-link">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                            </li>
+
+                            <!-- <li>
+                                <a href="#" class="social-link">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </li> -->
+
+                        </ul>
+
+                    </div>
+
+                    <ul class="footer-list">
+
+                        <li>
+                            <p class="h4 footer-list-title">Get in Touch</p>
+                        </li>
+
+                        <li>
+                            <address class="footer-text">
+                                Dr Puneeth Raj Kumar 100ft Road, 15th Cross Rd, JP Nagar 4th Phase, Bengaluru, Karnataka
+                                560078
+                            </address>
+                        </li>
+
+                        <li>
+                            <a href="mailto:republicofengineers.sns@gmail.com"
+                                class="footer-link">republicofengineers.sns@gmail.com</a>
+                        </li>
+
+                        <li>
+                            <a href="tel:7090930457" class="footer-link">+91 7090930457</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="footer-list">
+
+                        <li>
+                            <p class="h4 footer-list-title">Learn More</p>
+                        </li>
+
+                        <li>
+                            <a href="#why-us" class="footer-link">Why Us?</a>
+                        </li>
+
+                        <li>
+                            <a href="#services" class="footer-link">Our features</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer-link terms not-working">Terms of Use</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer-link terms not-working">Privacy Policy</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="footer-list">
+
+                        <p class="h4 footer-list-title">Our Newsletter</p>
+
+                        <p class="footer-text">
+                            Join to our newsletter to get updates of our website.
+                        </p>
+
+                        <form action="/news_letter" class="input-wrapper" method="POST">
+                            <input type="email" name="Email" placeholder="Email Address" required class="input-field">
+
+                            <button type="submit" class="submit-btn">Join</button>
+                        </form>
+                        <br><br>
+                        <p class="h4 footer-list-title">Help Us Improve</p>
+
+                        <p class="footer-text">
+                            Your feedback is important to us. Please share any suggestions or issues you may have.
+                        </p>
+                        <button id="feedback-btn" class="feedback-btn">Give Feedback</button>
+                        
+
+
+                    </div>
+
+
+                </div>
+
+            </footer>
+
+            <!-------------------------------------------------feedback form---------------------------------->
+            <div class="feedback-popup fade" id="feedbackPopup" tabindex="-1" role="dialog"
+                aria-labelledby="feedbackPopupLabel" aria-hidden="true">
+                <div class="feedback-dialog" role="document">
+                    <div class="feedback-content">
+                        <div class="feedback-header">
+                           <span class="feed-head"> <h3 class="feedback-title" id="feedbackPopupLabel">Feedback Form</h3>
+                            <span class="feedback-close" data-dismiss="feedbackPopup" aria-label="Close"
+                                aria-hidden="true">&times;</span></span>
+                        </div>
+                        <div class="feedback-body">
+                            <form id="feedbackForm" action="/feedback" method="POST">
+                                <div class="input-boxes">
+                                    <label>Name</label>
+                                    <input type="text" name="uname" placeholder="Enter your name" pattern="[A-Za-z ]+"
+                                        title="Only alphabets and spaces are allowed" maxlength="25" required />
+                                </div>
+                                <div class="input-boxes">
+                                    <label>Email</label>
+                                    <input type="email" name="email" placeholder="Enter your email" required maxlength="50" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+
+                                </div>
+                                <div class="input-boxes">
+                                    <label>Feedback</label>
+                                    <textarea name="feedback" rows="4" placeholder="Enter your feedback" required maxlength="255"></textarea>
+
+                                </div>
+                                <div class="input-boxes">
+                                    <label>Rating</label>
+                                    <select name="rating" required>
+                                        <option value="">---Select Rating---</option>
+                                        <option value="5">5 - Excellent</option>
+                                        <option value="4">4 - Good</option>
+                                        <option value="3">3 - Average</option>
+                                        <option value="2">2 - Poor</option>
+                                        <option value="1">1 - Terrible</option>
+                                    </select>
+                                </div>
+                                <div class="input-boxes">
+                                    <label>Category</label>
+                                    <select name="category" required>
+                                        <option value="">---Select Category---</option>
+                                        <option value="bug">Bug Report</option>
+                                        <option value="suggestion">Suggestion</option>
+                                        <option value="general">General Feedback</option>
+                                    </select>
+                                </div>
+                                <div class="feedback-footer">
+                                    <button type="reset" class="feedback-logbtnres">Reset</button>
+                                    <button type="submit" class="feedback-logbtn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <script>
+                //feedback-------------------------------------------------------
+
+                document.getElementById('feedback-btn').onclick = function () {
+                    document.getElementById('feedbackPopup').style.display = "block";
+                }
+
+                document.getElementsByClassName('feedback-close')[0].onclick = function () {
+                    document.getElementById('feedbackPopup').style.display = "none";
+                }
+
+                window.onclick = function (event) {
+                    if (event.target == document.getElementById('feedbackPopup')) {
+                        document.getElementById('feedbackPopup').style.display = "none";
+                    }
+                }
+
+//---------------------------------------------------------------------------------------
+
+                //sliding features
+                $(document).ready(function () {
+                    $('.toggle-btn').click(function () {
+                        var target = $(this).data('target');
+
+                        $('.toggle-btn').removeClass('active');
+                        $(this).addClass('active');
+
+                        if (target === 'aspirants') {
+                            $('.students').slideUp();
+                            $('.aspirants').slideDown();
+                        } else {
+                            $('.aspirants').slideUp();
+                            $('.students').slideDown();
+                        }
+                    });
+
+                    // Initially show cards for Engineering Aspirants
+                    $('#aspirantsBtn').trigger('click');
+                });
+
+                //features---------------------------------------------------------------------------------------
+                // $(document).ready(function () {
+                //     $('.toggle-btn').click(function () {
+                //         var target = $(this).data('target');
+
+                //         $('.toggle-btn').removeClass('active');
+                //         $(this).addClass('active');
+
+                //         if (target === 'aspirants') {
+                //             $('.students').hide();
+                //             $('.aspirants').show();
+                //         } else {
+                //             $('.aspirants').hide();
+                //             $('.students').show();
+                //         }
+                //     });
+
+                //     // Initially show cards for Engineering Aspirants
+                //     $('#aspirantsBtn').trigger('click');
+                // });
+
+
+
+
+                //terms and conditions checkbox checking
+
+                document.getElementById('googleLoginBtn').addEventListener('click', function (event) {
+                    if (!document.getElementById('termsCheckbox').checked) {
+                        event.preventDefault();
+                        alert('You must agree to the terms & conditions.');
+                    } else {
+                        window.location.href = '/auth/google';
+                    }
+                });
+
+                //login/signup sliding function
+                const container = document.querySelector(".container");
+                const loginForm = document.querySelector('.Register-form')
+                const RegisterForm = document.querySelector('.login-form');
+                const RegiBtn = document.querySelector('.LoginBtn');
+                const LoginBtn = document.querySelector('.RegiBtn');
+                RegiBtn.addEventListener('click', () => {
+                    RegisterForm.classList.add('active');
+                    loginForm.classList.add('active')
+                })
+                LoginBtn.addEventListener('click', () => {
+                    RegisterForm.classList.remove('active');
+                    loginForm.classList.remove('active')
+                })
+
+                //error message removing after certain time
+                function removeErrorMessage() {
+    var errorMessage = document.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.remove();
+    }
+}
+
+// Call the function after a certain duration (in milliseconds)
+var errorMessageTimeout = setTimeout(removeErrorMessage, 1000); // Adjust the duration as needed (3000 milliseconds = 3 seconds)
+
+
+// Remove the error message when the user scrolls the page
+document.addEventListener('scroll', function () {
+    clearTimeout(errorMessageTimeout);
+    removeErrorMessage(); // Remove the error message on scroll interaction
+});
+
+
+
+
+            </script>
+
+
+            <!-- 
+    - custom js link
+  -->
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script src="/js/script.js"></script>
+
+
+            <!-- 
+    - ionicon
+  -->
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+
+</body>
+
+</html>

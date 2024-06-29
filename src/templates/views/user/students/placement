@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Training Program</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../public/assets/css/style_placement.css">
+
+    
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="back">
+            <!-- <a href="user_dashboard"><span class="close" style="font-size: 25px; color:black;">&#8678;</span></a> -->
+            <a href="user_dashboard"><span class="close fa" style="font-size: 20px; color:black;">&#xf060;</span></a>
+
+        </div>
+        <div class="header">
+            <h1>Placement Training Registration</h1>
+            <br>
+            <div class="sub">
+                <p><strong>Organization:</strong> Republic of Engineers</p>
+                <p><strong>Location:</strong>TBD</p>
+                <p><strong>Start Date:</strong>25/06/2024</p>
+                <p><strong>Duration:</strong> 1 Day</p>
+                <p><strong>Apply By:</strong> 18/06/2024</p>
+            </div>
+        </div>
+
+        <div class="section about">
+            <h2>About the Placement Training Program</h2>
+            <ul>
+                <li>Resume Building and Cover Letters</li>
+                <li>Interview Skills and Mock Interviews</li>
+                <li>Understanding Job Descriptions and Requirements</li>
+                <li>Group Discussions and Personal Interviews</li>
+                <li>Aptitude and Technical Tests</li>
+                <li>Industry Insights and Best Practices</li>
+            </ul>
+        </div>
+        <div class="perks section">
+            <h2>Perks</h2>
+            <ul>
+                <li>Certificate</li>
+                <li>Mock Interviews and Feedback</li>
+                <li>Networking Opportunities</li>
+            </ul>
+        </div>
+        <div class="who-can-apply section">
+            <h2>Who Can Apply?</h2>
+            <ul>
+                <li>All engineering students studying in their 3rd year or 6th semester from any branch are eligible
+                    to apply for the Placement Training Workshop.
+                </li>
+            </ul>
+        </div>
+        <div class="who-can-apply section">
+            <h2>Registration Process</h2>
+            <ol>
+                <li>Click on the "Apply Now" button at the bottom of this page.</li>
+                <li>Fill out the application form with the required details.</li>
+                <li>Scan the QR code in the form to make the payment.</li>
+                <li>Upload the screenshot of payment and submit.</li>
+            </ol>
+            <!-- <div class="text-center">
+                <img src="\images\qr-code1.jpeg" alt="QR Code for Payment" style="max-width: 120px; margin: 20px 0;">
+            </div> -->
+        </div>
+        <div class="contact">
+            <h2>Contact Us:</h2>
+            <p><a href="https://www.instagram.com/republic.of.engineers?igsh=MXRmdjZ2OHU3NW84cw==" target="_blank">
+                <i class="fab fa-instagram icon-large"> republic.of.engineers</i></a></p>
+            <p><a href="mailto:republicofengineers.sns@gmail.com">
+                <i class="fas fa-envelope" style="text-decoration:none;"></i> republicofengineers.sns@gmail.com</a></p>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#applyModal">Apply Now</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applyModalLabel">Application Form</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                       <span class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
+                    <!-- </button> -->
+                </div>
+                <div class="modal-body">
+                    <form id="applicationForm" action="/placement" method="POST" class="form" enctype="multipart/form-data">
+                        <div class="input-box">
+                            <label>First Name</label>
+                            <input type="text" name="FirstName" placeholder="Enter first name" pattern="[A-Za-z]+" title="Only alphabets are allowed" maxlength="15" required />
+                        </div>
+                        <div class="input-box">
+                            <label>Last Name</label>
+                            <input type="text" name="LastName" placeholder="Enter last name" pattern="[A-Za-z]+" title="Only alphabets are allowed" maxlength="15"  required />
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label>Phone Number</label>
+                                <input type="text" name="Phone" placeholder="Enter phone number" pattern="\d+" title="Only numbers are allowed" maxlength="10" required />
+                            </div>
+                            <div class="input-box">
+                                <label>Date of Birth</label>
+                                <input type="date" name="DOB" placeholder="Enter birth date" min="1900-01-01" max="2018-12-31" required />
+                            </div>
+                        </div>
+                        <div class="input-box">
+
+                            <label>Gender</label>
+                            <select name="Gender" id="Gender">
+                                <option value="">---Select your Gender---</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            </div>
+                     
+
+                            <div class="column">
+                                <div class="input-box">
+                                    <label>University</label>
+                                    <select name="University" id="University">
+                                        <option value="">--Select your University---</option>
+                                        <option value="VTU">VTU</option>
+                                        <option value="Autonomous">Autonomous</option>
+                                        <option value="Deemed">Deemed</option>
+                                        <option value="Private">Private</option>
+                                    </select>
+                                </div>
+                                <div class="input-box">
+                                    <label>College</label>
+                                    <input type="text" name="College" placeholder="Enter your college" pattern="[A-Za-z]+" title="Only alphabets are allowed" maxlength="40"  required />
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="input-box">
+                                    <label>Branch</label>
+                                    <select name="Branch" id="Branch">
+                                        <option value="">---Select Your Branch--</option>
+                                        <option value="AIML/DS">AIML/DS</option>
+                                        <option value="Civil">Civil</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="EEE">EEE</option>
+                                        <option value="ISE">ISE</option>
+                                        <option value="Mechanical">Mechanical</option>
+                                    </select>
+                                </div>
+                                <div class="input-box">
+                                    <label>Semester</label>
+                                    <input type="number" name="Semester" placeholder="Enter your semester" pattern="\d+" maxlength="1" required />
+                                </div>
+                            </div>
+                            <br>
+                            <label>Scan the QR code below to make the payment</label>
+                            <div class="text-center">
+                                <img src="\images\qr-code1.jpeg" alt="QR Code for Payment" style="max-width: 120px; margin: 20px 0;">
+                            </div>
+                            <br>
+                            <div>
+                                <label>Payment Receipt</label>
+                                <input type="file" name="Payment_Screenshot" placeholder="Upload payment receipt" required/>
+                            </div>
+                      
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-primary reset">Reset</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

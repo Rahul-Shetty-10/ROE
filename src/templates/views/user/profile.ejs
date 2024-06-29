@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style_profile.css">
+    <link rel="stylesheet" href="/css/style_placement.css">
+    
+</head>
+
+<body>
+    <div class="container-xl px-4 mt-4">
+
+        <div class="row">
+            <!-- <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header heading">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2"
+                            src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-xl-12">
+                <div class="card-header heading"><a href="user_dashboard"><span class="fa back"
+                            style="font-size: 20px; color:white;">&#xf060;</span></a> My Profile</div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">First Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.FirstName %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.LastName %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.Email %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Phone Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.Phone %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Date of Birth</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.DOB %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.Gender %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Category</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.Category %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">University</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.University %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">College</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.College %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Branch</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.Branch %>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Semester</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                        <%= user.Semester %>
+                    </div>
+                </div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#applyModal">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applyModalLabel">Edit your Profile</h5>
+                    <span class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="applicationForm" action="/profile" method="POST" class="form">
+                        <div class="input-box">
+                            <label>First Name</label>
+                            <input type="text" name="FirstName" placeholder="Enter first name"
+                                value="<%= user.FirstName %>" pattern="[A-Za-z]+" title="Only alphabets are allowed"
+                                maxlength="15" required />
+                        </div>
+                        <div class="input-box">
+                            <label>Last Name</label>
+                            <input type="text" name="LastName" placeholder="Enter last name"
+                                value="<%= user.LastName %>" pattern="[A-Za-z]+" title="Only alphabets are allowed"
+                                maxlength="15" required />
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label>Phone Number</label>
+                                <input type="text" name="Phone" placeholder="Enter phone number" pattern="\d+"
+                                    title="Only numbers are allowed" maxlength="10" value="<%= user.Phone %>"
+                                    maxlength="10" required />
+                            </div>
+                            <div class="input-box">
+                                <label>Date of Birth</label>
+                                <input type="date" name="DOB" placeholder="Enter birth date" value="<%= user.DOB %>"
+                                    min="1900-01-01" max="2018-12-31" required />
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label>Gender</label>
+                            <select name="Gender" id="Gender" required>
+                                <option value="">---Select your Gender---</option>
+                                <option value="Male" <%=user.Gender==="Male" ? "selected" : "" %>>Male</option>
+                                <option value="Female" <%=user.Gender==="Female" ? "selected" : "" %>>Female</option>
+                                <option value="Others" <%=user.Gender==="Others" ? "selected" : "" %>>Others</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label>Category</label>
+                            <select name="Category" id="Category" required>
+                                <option value="">---Select your Category---</option>
+                                <option value="Student" <%=user.Category==="Student" ? "selected" : "" %>>Engineering
+                                    Student</option>
+                                <option value="Aspirant" <%=user.Category==="Aspirant" ? "selected" : "" %>>Engineering
+                                    Aspirant</option>
+                                <option value="Others" <%=user.Category==="Others" ? "selected" : "" %>>Others</option>
+                            </select>
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label>University</label>
+                                <select name="University" id="University">
+                                    <option value="">---Select Your University--</option>
+                                    <option value="VTU" <%=user.University==="VTU" ? "selected" : "" %>>VTU</option>
+                                    <option value="Autonomous" <%=user.University==="Autonomous" ? "selected" : "" %>
+                                        >Autonomous</option>
+                                    <option value="Deemed" <%=user.University==="Deemed" ? "selected" : "" %>>Deemed
+                                    </option>
+                                    <option value="Private" <%=user.University==="Private" ? "selected" : "" %>>Private
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <label>College</label>
+                                <input type="text" name="College" placeholder="Enter your college"
+                                    value="<%= user.College %>" pattern="[A-Za-z ]+" maxlength="40" required />
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label>Branch</label>
+                                <select name="Branch" id="Branch">
+                                    <option value="">---Select Your Branch--</option>
+                                    <option value="AIML/DS" <%=user.Branch==="AIML/DS" ? "selected" : "" %>>AIML/DS
+                                    </option>
+                                    <option value="Civil" <%=user.Branch==="Civil" ? "selected" : "" %>>Civil</option>
+                                    <option value="CSE" <%=user.Branch==="CSE" ? "selected" : "" %>>CSE</option>
+                                    <option value="ECE" <%=user.Branch==="ECE" ? "selected" : "" %>>ECE</option>
+                                    <option value="EEE" <%=user.Branch==="EEE" ? "selected" : "" %>>EEE</option>
+                                    <option value="ISE" <%=user.Branch==="ISE" ? "selected" : "" %>>ISE</option>
+                                    <option value="Mechanical" <%=user.Branch==="Mechanical" ? "selected" : "" %>
+                                        >Mechanical</option>
+                                </select>
+                                <!-- <input type="text" name="Branch" placeholder="Enter your Branch" value="<%= user.Branch %>" required /> -->
+                            </div>
+                            <div class="input-box">
+                                <label>Semester</label>
+                                <input type="text" name="Semester" placeholder="Enter your semester"
+                                    value="<%= user.Semester %>" pattern="\d+" maxlength="1" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-primary reset">Reset Changes</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

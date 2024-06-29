@@ -1,0 +1,72 @@
+<style>
+/* Hide content initially */
+/* body {
+  visibility: hidden;
+} */
+
+/* Loader CSS */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gear loader */
+.gear {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: transparent;
+  border: 8px solid #3498db;
+  border-top: 8px solid transparent;
+  animation: spin 1s linear infinite;
+}
+
+.gear::before, .gear::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #3498db;
+  border-radius: 50%;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gear::after {
+  top: auto;
+  bottom: -12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+</style>
+<div class="loader-overlay">
+  <div class="gear"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(window).on("load", function() {
+    $(".loader-overlay").fadeOut("slow", function() {
+      $("body").css("visibility", "visible");
+    });
+  });
+</script>
+
+
+
+

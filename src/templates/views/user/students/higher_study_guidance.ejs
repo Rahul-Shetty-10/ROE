@@ -1,0 +1,205 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/loader') %>
+<%- include('../../partials/sidebar') %>
+
+<style>
+  .unique-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+.unique-benefits, .unique-destinations, .unique-fields, .unique-process, .unique-scholarships, .unique-steps {
+  margin-bottom: 30px;
+}
+
+.unique-card-header {
+  background-color: rgb(218, 225, 239);
+  color: black;
+  text-align: center;
+  font-weight:600;
+}
+.unq-ul {
+  padding-left: 40px; /* Add padding for custom bullets */
+}
+
+.unq-ul li {
+  list-style-type: disc;
+  position: relative;
+  padding-left: 10px; /* Adjust space between bullet and text */
+}
+
+.unq-ul li::before {
+  color: grey;
+  display: inline-block;
+  font-size: 0.8em; /* Decrease bullet size */
+  margin-left: -1em; /* Adjust position of bullet */
+  position: absolute;
+  left: 0; /* Ensure bullet is at the leftmost position */
+  top: 0.3em; /* Adjust vertical alignment */
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .unique-header h1 {
+    font-size: medium; 
+  }
+  
+  h1,h2 {
+    font-size: large;
+  }
+}
+
+p{
+  color:black;
+  font-size:medium;
+}
+.agenda a{
+  color:blue;
+}
+.agenda a:hover{
+  color:black;
+}
+
+
+
+</style>
+
+
+<div class="container content-container">
+        <div class="unique-header">
+          <h1 style="color:black">Study Opportunities Abroad for Engineering Graduates</h1>
+          <hr>
+        </div>
+
+        <div class="agenda">
+            <h2><strong>Agenda</strong></h2><br>
+            <p>Explore various opportunities for engineering graduates to study abroad in specialized fields such as Computer Science & IT, Mechanical Engineering, Electronics & Communication Engineering, Electrical and Electronics Engineering, and Civil Engineering. Learn about the application process, scholarships, and steps to get started.</p>
+            <p><strong>Jump to: </strong>
+              <ul>
+            <a href="#benefits">1. General Benefits</a>
+            <a href="#destinations">2. Popular Destinations and Programs</a>
+            <a id="benefits" href="#fields">3. Specialized Fields and Programs</a>
+            <a href="#process">4. Application Process and Requirements</a>
+            <a href="#scholarships">5. Scholarships and Financial Aid</a>
+            <a  href="#steps">6. Steps to Get Started</a></p>
+          </ul>
+        </div>
+    
+<hr><br>
+        <div  class="unique-benefits">
+          <h2><strong>1. General Benefits of Studying Abroad</strong></h2><br>
+          <ul class="unq-ul">
+            <li class="">Access to Cutting-Edge Research and Technology</li>
+            <li class="">Global Networking</li>
+            <li id="destinations" class="">Cultural Exposure</li>
+            <li class="">Enhanced Employability</li>
+          </ul>
+        </div>
+        <hr><br>
+        <div  class="unique-destinations">
+          <h2><strong>2. Popular Destinations and Programs</strong></h2><br>
+          <div class="card">
+            <div class="unique-card-header">United States</div>
+            <div class="card-body">
+              <p><strong>Master’s Programs:</strong> MS in Engineering, MBA with a focus on Engineering Management, or specialized fields like Artificial Intelligence, Data Science, and Cybersecurity.</p>
+              <p><strong>Top Universities:</strong> MIT, Stanford, UC Berkeley, Georgia Tech, University of Michigan.</p>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div  id="fields" class="unique-card-header">United Kingdom</div>
+            <div class="card-body">
+              <p><strong>Master’s Programs:</strong> MSc in Engineering disciplines, MEng in various specializations, MBA with a focus on technology management.</p>
+              <p><strong>Top Universities:</strong> University of Cambridge, University of Oxford, Imperial College London, University College London (UCL).</p>
+            </div>
+          </div>
+          
+        </div>
+        <hr><br>
+        <div  class="unique-fields">
+          <h2><strong>3. Fields and Programs</strong></h2><br>
+          <div class="card">
+            <div class="unique-card-header">Computer Science & IT</div>
+            <div class="card-body">
+              <p><strong>Programs:</strong> MS in Computer Science, Data Science, Artificial Intelligence, Cybersecurity.</p>
+              <p><strong>Countries:</strong> USA, UK, Canada, Germany.</p>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="unique-card-header">Mechanical Engineering</div>
+            <div class="card-body">
+              <p><strong>Programs:</strong> MSc in Mechanical Engineering, Automotive Engineering, Robotics.</p>
+              <p><strong>Countries:</strong> Germany, USA, UK, Japan.</p>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="unique-card-header">Electronics & Communication Engineering (EC)</div>
+            <div class="card-body">
+              <p><strong>Programs:</strong> MSc in Electronics & Communication Engineering, Telecommunications, Signal Processing.</p>
+              <p><strong>Countries:</strong> USA, UK, Canada, Australia, Singapore.</p>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="unique-card-header">Electrical and Electronics Engineering (EEE)</div>
+            <div class="card-body">
+              <p><strong>Programs:</strong> MSc in Electrical and Electronics Engineering, Power Systems, Renewable Energy.</p>
+              <p><strong>Countries:</strong> USA, UK, Canada, Australia, Germany.</p>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="unique-card-header">Civil Engineering</div>
+            <div id="process" class="card-body">
+              <p><strong>Programs:</strong> MSc in Civil Engineering, Structural Engineering, Environmental Engineering.</p>
+              <p><strong>Countries:</strong> USA, UK, Canada, Australia, New Zealand.</p>
+            </div>
+          </div>
+          
+          
+        </div>
+        <hr><br>
+        <div  class="unique-process">
+          <h2><strong>4. Process and Requirements</strong></h2><br>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Entrance Exams:</strong> GRE, TOEFL/IELTS for most English-speaking countries. Some European countries may require additional language tests.</li>
+            <li class="list-group-item"><strong>Documentation:</strong> Transcripts, Statement of Purpose (SOP), Letters of Recommendation (LORs), CV/Resume, Portfolio (if applicable).</li>
+            <li class="list-group-item"><strong>Scholarships and Funding:</strong> Look for scholarships offered by universities, governments (like DAAD for Germany), and organizations (like Fulbright for the USA).</li>
+          </ul>
+        </div>
+        <hr><br>
+        <div id="scholarships" class="unique-scholarships">
+          <h2><strong>5. Scholarships and Financial Aid</strong></h2><br>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>USA:</strong> Fulbright Scholarships, university-specific scholarships.</li>
+            <li class="list-group-item"><strong>UK:</strong> Chevening Scholarships, Commonwealth Scholarships.</li>
+            <li class="list-group-item"><strong>Germany:</strong> DAAD Scholarships.</li>
+            <li class="list-group-item"><strong>Canada:</strong> Vanier Canada Graduate Scholarships, university-specific awards.</li>
+            <li class="list-group-item"><strong>Australia:</strong> Australia Awards Scholarships, university-specific scholarships.</li>
+          </ul>
+        </div>
+        <hr><br>
+        <div id="steps" class="unique-steps">
+          <h2><strong>6. Steps to Get Started</strong></h2><br>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Research:</strong>Start by identifying your field of interest and potential universities.</li>
+            <li class="list-group-item"><strong>Prepare for Exams:</strong> Schedule and prepare for necessary entrance exams.</li>
+            <li class="list-group-item"><strong>Gather Documents:</strong> Collect all required documents well in advance.</li>
+            <li class="list-group-item"><strong>Apply for Scholarships:</strong> Research and apply for financial aid and scholarships.</li>
+            <li class="list-group-item"><strong>Apply to Universities:</strong> Submit applications to chosen universities, keeping track of deadlines.</li>
+          <br>
+          </ul>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+<%- include('../../partials/footer') %>
